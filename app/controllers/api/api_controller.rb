@@ -44,5 +44,8 @@ module Api
         def default_serializer_options
             {root: true}
         end
+        def logged_in?
+            @user = find_user(request.headers['X-User-id'],request.headers['X-Authentication-Token'])
+        end
     end
 end

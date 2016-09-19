@@ -61,9 +61,6 @@ module Api
             def todo_params
                 params.require(:todo).permit(:content)
             end
-            def logged_in?
-                @user = find_user(request.headers['X-User-id'],request.headers['X-Authentication-Token'])
-            end
         end
     end
 end
