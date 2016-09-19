@@ -6,6 +6,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 gem 'active_model_serializers'
 gem 'responders'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 group :development, :test do
   gem 'byebug'
 end
