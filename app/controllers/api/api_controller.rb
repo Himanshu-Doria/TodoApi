@@ -14,7 +14,10 @@ module Api
         end
 
         def find_user(user_id,remember_token)
-            user = User.find_by(id: user_id)
+            if user_id.nil? || remember_token.nil?
+                error("Bad Request",400) and return
+            end
+            user = User.find_by(id: user_id.to_i)
             if user
                 if BCrypt::Password.new(user.remember_digest).is_password?(remember_token)
                    if user.auth_token_expired?
@@ -26,7 +29,7 @@ module Api
                     error("Invalid Session Token",401) and return
                 end
             else
-                error("User not found",404) and return
+                error("You are not logged in",401) and return
             end
         end
 

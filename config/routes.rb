@@ -2,14 +2,8 @@ require 'api_constraints'
 TodoApi::Application.routes.draw do
   namespace :api do
     scope module: :v1, constraints: ApiConstraints.new(version: 1,default: true) do
-      resources :users, only: [:create] do
-        collection do
-          get 'show_user'
-          post 'update_user'
-          delete 'delete_user'
-        end
-      end
-
+      resources :users, only: [:create,:update,:show,:destroy] 
+      resources :todos, only: [:index,:create,:update,:destroy]
       resources :sessions, only: [] do
         collection do
           post "sign_in"

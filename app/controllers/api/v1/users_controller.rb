@@ -12,7 +12,7 @@ module Api
                 end
             end
 
-            def show_user
+            def show
                 user=User.find_by(id: request.headers["X-User-id"].to_i)
                 if user
                     json_response(user,200,"Success",UserSafeParamsSerializer,"user")
@@ -21,7 +21,7 @@ module Api
                 end                 
             end
 
-            def update_user
+            def update
                 user = User.find_by(id: request.headers["X-User-id"].to_i)
                 if user && user.update(update_user_params)
                     json_response(user,200,"Success",UserSafeParamsSerializer,"user")
@@ -32,7 +32,7 @@ module Api
                 end
             end
 
-            def delete_user
+            def destroy
                 user = User.find_by(id: request.headers["X-User-id"].to_i)
                 if user
                     user.destroy

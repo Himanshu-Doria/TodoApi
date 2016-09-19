@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+
+    has_many :todos, dependent: :destroy
     has_secure_password
     AGE_REGEX = /\d/i
     attr_accessor :remember_token

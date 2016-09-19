@@ -42,6 +42,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    awesome_print (1.7.0)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -70,6 +71,8 @@ GEM
       pkg-config (~> 1.1.7)
     pg (0.18.4)
     pkg-config (1.1.7)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -128,9 +131,11 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  awesome_print
   bcrypt (~> 3.1.7)
   byebug
   pg
+  quiet_assets
   rails (= 4.2.6)
   responders
   sdoc (~> 0.4.0)
