@@ -10,6 +10,7 @@ TodoApi::Application.routes.draw do
           delete 'sign_out'
         end
       end
+      get '/search', to: 'search#search' 
     end
 
     scope module: :v2, constraints: ApiConstraints.new(version: 2) do
