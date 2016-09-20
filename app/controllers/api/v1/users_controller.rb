@@ -4,6 +4,7 @@ module Api
             respond_to :json
 
             before_action :logged_in?, only: [:show,:update,:destroy]
+            before_action :authorized?, only: [:update,:destroy]
 
             def create 
                 user = User.new(user_params)
@@ -29,6 +30,10 @@ module Api
                 if @user.nil?
                     return
                 end
+                unless @authorize
+                    error("Access denied",401)
+                    return
+                end
                 if @user && @user.update(update_user_params)
                     json_response(@user,200,"Success",UserSafeParamsSerializer,"user")
                 elsif user.nil?
@@ -40,6 +45,10 @@ module Api
 
             def destroy
                 if @user.nil?
+                    return
+                end
+                unless @authorize
+                    error("Access denied",401)
                     return
                 end
                 if @user
@@ -58,6 +67,14 @@ module Api
 
             def update_user_params
                 params.require(:user).permit(:email,:password,:password_confirmation,:name,:age,:phone,:address)
+            end
+
+            def authorized?
+                unless (params[:id] == request.headers['X-User-id'])
+                    @authorize = false
+                else
+                    @authorize = true
+                end
             end
         end
     end
