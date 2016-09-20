@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
+    include Tire::Model::Search
+    include Tire::Model::Callbacks
 
+    
     has_many :todos, dependent: :destroy
     has_secure_password
     AGE_REGEX = /\d/i
