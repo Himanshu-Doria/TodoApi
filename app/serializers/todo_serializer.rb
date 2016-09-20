@@ -4,6 +4,6 @@ class TodoSerializer < ActiveModel::Serializer
 
 
   def created_on
-    object.created_at.strftime("%d %b %Y")
+    object.updated_at.strftime("%d %b %Y")
   end
 end

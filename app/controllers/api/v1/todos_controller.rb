@@ -29,7 +29,7 @@ module Api
                 if @user.nil?
                     return
                 end
-                todo = @user.todos.find_by(id: get_todo)
+                todo = @user.todos.find_by(id: params[:id])
                 if todo.nil?
                     error("Not Found",404)
                 elsif todo.update(todo_params)
@@ -43,7 +43,7 @@ module Api
                 if @user.nil?
                     return
                 end
-                todo = @user.todos.find_by(id: get_todo)
+                todo = @user.todos.find_by(id: params[:id])
                 if todo.nil?
                     error("Not Found",404)
                 else
@@ -53,10 +53,6 @@ module Api
             end
 
             private
-
-            def get_todo
-                request.headers['X-Todo-id'].to_i
-            end
 
             def todo_params
                 params.require(:todo).permit(:content)
