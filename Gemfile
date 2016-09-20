@@ -8,6 +8,7 @@ gem 'active_model_serializers'
 gem 'responders'
 gem 'tire'
 gem 'faker'
+gem 'rails_12factor', group: :production
 group :development, :test do
   gem 'byebug'
 end
