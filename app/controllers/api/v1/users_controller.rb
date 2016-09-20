@@ -4,6 +4,7 @@ module Api
             respond_to :json
 
             before_action :logged_in?, only: [:show,:update,:destroy]
+            before_action :authorized?, only: [:update,:destroy]
 
             def create 
                 user = User.new(user_params)
