@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
-    include Tire::Model::Search
-    include Tire::Model::Callbacks
-
-    
+    include PgSearch
+    pg_search_scope :search, :against => [:name,:address]
     has_many :todos, dependent: :destroy
     has_secure_password
     AGE_REGEX = /\d/i

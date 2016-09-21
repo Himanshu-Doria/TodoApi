@@ -7,7 +7,7 @@ module Api
                     return
                 end
                 if params[:search]
-                    @users = User.search(params[:search], load: true)
+                    @users = User.search(params[:search])
                     render json: @users, status: 200, each_serializer: UserSafeParamsSerializer, root: :user, result: "Found #{@users.size} result(s)"
                 else
                     error("Bad Request",400)
